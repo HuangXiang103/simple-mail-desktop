@@ -1,0 +1,18 @@
+node_modules/
+dist/
+release/
+out/
+
+# build artifacts
+*.asar
+*.asar.unpacked/
+*.log
+
+# local account data — never commit
+accounts.json
+settings.json
+
+# OS clutter
+.DS_Store
+Thumbs.db
+desktop.ini

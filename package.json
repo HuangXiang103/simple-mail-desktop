@@ -1,0 +1,37 @@
+{
+  "name": "simple-mail-desktop",
+  "version": "2.1.0",
+  "description": "JianYou (简邮) — a read-only Windows desktop client that unifies multiple IMAP mailboxes in one window.",
+  "license": "MIT",
+  "type": "module",
+  "main": "main.cjs",
+  "private": true,
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [
+    "email",
+    "imap",
+    "electron",
+    "mail-client",
+    "read-only"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/3Jackie/simple-mail-desktop.git"
+  },
+  "bugs": {
+    "url": "https://github.com/3Jackie/simple-mail-desktop/issues"
+  },
+  "homepage": "https://github.com/3Jackie/simple-mail-desktop#readme",
+  "dependencies": {
+    "html-to-text": "10.0.1",
+    "imapflow": "2.12.2"
+  },
+  "devDependencies": {
+    "electron": "^32.3.3"
+  }
+}

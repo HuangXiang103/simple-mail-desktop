@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="simple-mail-session" content="%%SESSION%%">
+  <meta name="theme-color" content="#1a73e8">
+  <title>简邮</title>
+  <script src="/theme.js"></script>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/style.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-inbox" viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5z"/><path d="M4 13h4l2 3h4l2-3h4"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 6.2"/><path d="M20 5v6h-6"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.5 2"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m8 10 4 4 4-4"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6H9l2 2h8.5A1.5 1.5 0 0 1 21 9.5v8a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z"/></symbol>
+    <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+    <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M4 20h4L19 9a2.1 2.1 0 0 0-3-3L5 17z"/><path d="m14.5 6.5 3 3"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.5v.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4.5 4.5L19 7"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></symbol>
+    <symbol id="i-paperclip" viewBox="0 0 24 24"><path d="M20 11.5 12.3 19a5 5 0 0 1-7.1-7.1l8.2-8.2a3.3 3.3 0 0 1 4.7 4.7l-8.2 8.2a1.7 1.7 0 0 1-2.4-2.4l7.6-7.6"/></symbol>
+    <symbol id="i-reply" viewBox="0 0 24 24"><path d="M9 7 4 12l5 5"/><path d="M4 12h10a6 6 0 0 1 6 6v1"/></symbol>
+    <symbol id="i-forward" viewBox="0 0 24 24"><path d="m15 7 5 5-5 5"/><path d="M20 12H10a6 6 0 0 0-6 6v1"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></symbol>
+    <symbol id="i-archive" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="4" rx="1"/><path d="M5 8v11h14V8M10 12h4"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="m21 3-9 18-2.5-7.5L2 11z"/><path d="m9.5 13.5 11.5-10.5"/></symbol>
+    <symbol id="i-draft" viewBox="0 0 24 24"><path d="M5 4h9l5 5v11H5z"/><path d="M14 4v5h5M8 13h8M8 17h5"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.1A1.7 1.7 0 0 0 9 19.24a1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.64 15a1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.1A1.7 1.7 0 0 0 4.66 9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 9 4.64h.08A1.7 1.7 0 0 0 10.1 3.08V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.36 9v.08A1.7 1.7 0 0 0 20.92 10.1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1.03Z"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.3 2.4 3.5 5.4 3.5 8.5s-1.2 6.1-3.5 8.5c-2.3-2.4-3.5-5.4-3.5-8.5S9.7 5.9 12 3.5Z"/></symbol>
+  </svg>
+
+  <div class="app" id="app">
+    <header class="topbar">
+      <div class="topbar-brand">
+        <span class="brand-mark" aria-hidden="true"><svg class="icon"><use href="#i-mail"></use></svg></span>
+        <span class="brand-text" data-i18n="app.name">简邮</span>
+      </div>
+      <form id="search-form" class="topbar-search" role="search">
+        <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
+        <input id="search" type="search" maxlength="160" data-i18n-aria="search.label" data-i18n-placeholder="search.placeholder.recent" aria-label="搜索邮件" placeholder="在最近邮件中搜索" autocomplete="off" disabled>
+        <button id="search-clear" class="search-clear" type="button" data-i18n-aria="search.clear" aria-label="清除搜索" hidden><svg class="icon"><use href="#i-x"></use></svg></button>
+      </form>
+      <div class="topbar-right">
+        <button id="open-settings" class="topbar-icon" type="button" data-i18n-aria="settings.open" data-i18n-title="settings.open" aria-label="设置" title="设置"><svg class="icon"><use href="#i-settings"></use></svg></button>
+        <button id="theme-toggle" class="topbar-icon" type="button" data-i18n-aria="theme.toDark" aria-label="切换深色模式" title="切换深色模式"></button>
+        <button id="add-small" class="topbar-add" type="button" data-i18n-title="account.addLong" title="添加邮箱"><svg class="icon"><use href="#i-plus"></use></svg> <span data-i18n="account.add">添加账号</span></button>
+      </div>
+    </header>
+
+    <div class="workspace">
+      <aside class="sidebar" data-i18n-aria="nav.label" aria-label="邮箱导航">
+        <button class="compose-btn" id="compose" type="button" data-i18n-title="compose.tip" title="写信（当前只读模式）"><svg class="icon"><use href="#i-pencil"></use></svg> <span data-i18n="compose">写信</span></button>
+
+        <nav class="folder-nav" data-i18n-aria="folders.label" aria-label="文件夹">
+          <button class="folder-item active" id="nav-recent" type="button" aria-current="true">
+            <svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg>
+            <span data-i18n="nav.recent">最近邮件</span>
+          </button>
+          <button class="folder-item" id="unified" type="button" aria-current="false">
+            <svg class="icon" aria-hidden="true"><use href="#i-inbox"></use></svg>
+            <span data-i18n="nav.unified">所有收件箱</span>
+            <span class="folder-count" id="unified-count" hidden></span>
+          </button>
+          <button class="folder-item" id="nav-starred" type="button">
+            <svg class="icon" aria-hidden="true"><use href="#i-star"></use></svg><span data-i18n="nav.starred">星标邮件</span>
+          </button>
+          <button class="folder-item" id="nav-sent" type="button">
+            <svg class="icon" aria-hidden="true"><use href="#i-send"></use></svg><span data-i18n="nav.sent">已发送</span>
+          </button>
+          <button class="folder-item" id="nav-draft" type="button">
+            <svg class="icon" aria-hidden="true"><use href="#i-draft"></use></svg><span data-i18n="nav.drafts">草稿箱</span>
+          </button>
+          <button class="folder-item" id="nav-archive" type="button">
+            <svg class="icon" aria-hidden="true"><use href="#i-archive"></use></svg><span data-i18n="nav.archive">归档</span>
+          </button>
+        </nav>
+
+        <div class="section-head">
+          <span data-i18n="accounts.title">我的邮箱</span>
+          <button id="add-account" class="mini-add" type="button" data-i18n-aria="account.addLong" data-i18n-title="account.addLong" aria-label="添加邮箱" title="添加邮箱"><svg class="icon"><use href="#i-plus"></use></svg></button>
+        </div>
+        <nav id="accounts" class="account-list" data-i18n-aria="accounts.title" aria-label="邮箱账号"></nav>
+
+        <div class="sidebar-foot">
+          <span class="privacy"><svg class="icon" aria-hidden="true"><use href="#i-lock"></use></svg> <span data-i18n="privacy">本机读取 · 不上传</span></span>
+        </div>
+      </aside>
+
+      <section class="list-pane" aria-labelledby="folder-title">
+        <div class="list-heading">
+          <div class="list-title">
+            <h1 id="folder-title">最近邮件</h1>
+            <span class="list-meta" id="list-status" role="status"></span>
+          </div>
+          <div class="list-actions">
+            <button id="edit-account" class="tool-icon" type="button" data-i18n-aria="action.editAccount" data-i18n-title="action.editAccount" aria-label="编辑当前账号" title="编辑当前账号" hidden><svg class="icon"><use href="#i-pencil"></use></svg></button>
+            <label class="folder-select" id="folder-label" hidden>
+              <select id="folders" data-i18n-aria="action.switchFolder" aria-label="切换文件夹"></select>
+              <svg class="icon chevron-icon" aria-hidden="true"><use href="#i-chevron"></use></svg>
+            </label>
+            <button id="refresh" class="tool-icon" type="button" data-i18n-aria="action.refresh" data-i18n-title="action.refresh" aria-label="刷新邮件" title="刷新邮件" disabled><svg class="icon"><use href="#i-refresh"></use></svg></button>
+          </div>
+        </div>
+
+        <div class="list-toolbar">
+          <label class="check-all" data-i18n-title="action.selectAll" title="全选"><input id="check-all" type="checkbox" data-i18n-aria="action.selectAll" aria-label="全选"></label>
+          <span class="toolbar-divider"></span>
+          <button class="tool-btn" id="tool-read" type="button"><svg class="icon"><use href="#i-check"></use></svg><span data-i18n="tool.read">已读</span></button>
+          <button class="tool-btn" id="tool-star" type="button"><svg class="icon"><use href="#i-star"></use></svg><span data-i18n="tool.star">星标</span></button>
+          <button class="tool-btn" id="tool-archive" type="button"><svg class="icon"><use href="#i-archive"></use></svg><span data-i18n="tool.archive">归档</span></button>
+          <button class="tool-btn danger" id="tool-delete" type="button"><svg class="icon"><use href="#i-trash"></use></svg><span data-i18n="tool.delete">删除</span></button>
+          <span class="toolbar-note" data-i18n="toolbar.note">只读模式 · 操作仅演示</span>
+        </div>
+
+        <div class="column-labels">
+          <span class="col-sender" data-i18n="col.sender">发件人</span>
+          <span class="col-subject" data-i18n="col.subject">主题</span>
+          <span class="col-date" data-i18n="col.date">日期</span>
+        </div>
+
+        <div id="mail-list" class="mail-list" aria-label="邮件列表"></div>
+        <div id="list-footer" class="list-footer" hidden><button id="more" class="load-more" type="button" data-i18n="list.more">加载更早的邮件</button> <button id="load-all" class="load-more" type="button" data-i18n="list.all">加载全部邮件</button></div>
+      </section>
+
+      <section id="reader" class="reader" data-i18n-aria="reader.label" aria-label="邮件正文"></section>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <dialog id="account-dialog" aria-labelledby="dialog-title">
+    <form id="account-form" class="sheet" novalidate>
+      <header class="sheet-head">
+        <div><h2 id="dialog-title">添加邮箱</h2></div>
+        <button id="close-dialog" class="icon-btn" type="button" data-i18n-aria="dialog.close" aria-label="关闭"><svg class="icon"><use href="#i-x"></use></svg></button>
+      </header>
+      <div id="account-fields" class="sheet-body">
+        <fieldset id="provider-fieldset" class="provider-fieldset">
+          <legend data-i18n="field.provider">邮箱服务</legend>
+          <div id="provider-options" class="provider-grid"></div>
+        </fieldset>
+        <label class="field"><span data-i18n="field.email">邮箱地址</span>
+          <input id="email" name="email" type="email" required maxlength="254" autocomplete="username" spellcheck="false" placeholder="name@qq.com">
+        </label>
+        <div id="host-fields" class="field-row" hidden>
+          <label class="field"><span data-i18n="field.host">IMAP 服务器</span>
+            <input id="host" name="host" type="text" maxlength="253" spellcheck="false" placeholder="imap.example.com">
+          </label>
+          <label class="field"><span data-i18n="field.port">SSL/TLS 端口</span>
+            <input id="port" name="port" type="number" min="1" max="65535" value="993" inputmode="numeric">
+          </label>
+        </div>
+        <label class="field"><span id="password-caption">授权码</span>
+          <input id="password" name="password" type="password" required maxlength="1024" autocomplete="new-password" aria-describedby="provider-hint">
+        </label>
+        <p class="hint" id="provider-hint"></p>
+        <label id="remember-label" class="check">
+          <input id="remember" name="remember" type="checkbox">
+          <span class="check-text"><span data-i18n="remember.title">用 Windows 加密记住授权码</span><small data-i18n="remember.sub">仅保存在当前电脑，可随时移除</small></span>
+        </label>
+      </div>
+      <p class="form-message" id="form-message" role="status"></p>
+      <footer class="sheet-foot">
+        <button id="remove-account" type="button" class="button danger" hidden data-i18n="action.removeAccount">移除账号</button>
+        <span class="spacer"></span>
+        <button id="cancel" type="button" class="button ghost" data-i18n="action.cancel">取消</button>
+        <button id="save" type="submit" class="button primary" data-i18n="action.connect">连接邮箱</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <dialog id="settings-dialog" aria-labelledby="settings-title">
+    <div class="sheet settings-sheet">
+      <header class="sheet-head">
+        <div><h2 id="settings-title" data-i18n="settings.title">设置</h2></div>
+        <button id="settings-close" class="icon-btn" type="button" data-i18n-aria="dialog.close" aria-label="关闭"><svg class="icon"><use href="#i-x"></use></svg></button>
+      </header>
+
+      <div class="settings-tabs" role="tablist">
+        <button class="settings-tab active" type="button" role="tab" aria-selected="true" data-tab="general" data-i18n="settings.tab.general">通用</button>
+        <button class="settings-tab" type="button" role="tab" aria-selected="false" data-tab="network" data-i18n="settings.tab.network">网络</button>
+        <button class="settings-tab" type="button" role="tab" aria-selected="false" data-tab="mail" data-i18n="settings.tab.mail">邮件</button>
+        <button class="settings-tab" type="button" role="tab" aria-selected="false" data-tab="about" data-i18n="settings.tab.about">关于</button>
+      </div>
+
+      <div class="settings-body">
+        <section class="settings-panel active" data-panel="general">
+          <div class="setting-row">
+            <div class="setting-text">
+              <span data-i18n="settings.language">界面语言</span>
+              <small data-i18n="settings.language.hint">切换后立即生效，邮件内容保持原样。</small>
+            </div>
+            <div class="segmented" id="language-options" role="group"></div>
+          </div>
+          <div class="setting-row">
+            <div class="setting-text"><span data-i18n="settings.theme">主题</span></div>
+            <div class="segmented" id="theme-options" role="group">
+              <button type="button" data-value="system" data-i18n="theme.system">跟随系统</button>
+              <button type="button" data-value="light" data-i18n="theme.light">浅色</button>
+              <button type="button" data-value="dark" data-i18n="theme.dark">深色</button>
+            </div>
+          </div>
+          <div class="setting-row">
+            <div class="setting-text"><span data-i18n="settings.density">列表密度</span></div>
+            <div class="segmented" id="density-options" role="group">
+              <button type="button" data-value="comfortable" data-i18n="density.comfortable">舒适</button>
+              <button type="button" data-value="compact" data-i18n="density.compact">紧凑</button>
+            </div>
+          </div>
+          <div class="setting-row" data-windows-only>
+            <div class="setting-text">
+              <span data-i18n="settings.startAtLogin">开机自动启动</span>
+              <small data-i18n="settings.startAtLogin.hint">登录 Windows 后自动打开简邮。</small>
+            </div>
+            <label class="switch"><input id="set-startup" type="checkbox"><span></span></label>
+          </div>
+        </section>
+
+        <section class="settings-panel" data-panel="network">
+          <div class="setting-row">
+            <div class="setting-text">
+              <span data-i18n="settings.bypassProxy">绕过系统代理</span>
+              <small data-i18n="settings.bypassProxy.hint">开着 VPN 或代理软件时，简邮仍能正常打开。修改后需要重启应用。</small>
+            </div>
+            <label class="switch"><input id="set-bypass" type="checkbox"><span></span></label>
+          </div>
+          <div class="setting-stack">
+            <div class="setting-text"><span data-i18n="settings.mailProxy">邮箱连接代理</span></div>
+            <input id="set-mail-proxy" class="text-input" type="text" maxlength="200" spellcheck="false" placeholder="socks5://127.0.0.1:7897">
+            <small class="setting-hint" data-i18n="settings.mailProxy.hint">支持 socks5:// 与 http://，留空表示直连。</small>
+          </div>
+          <div class="setting-row">
+            <div class="setting-text"><span data-i18n="settings.timeout">连接超时（秒）</span></div>
+            <input id="set-timeout" class="text-input compact" type="number" min="5" max="60" step="1">
+          </div>
+          <div class="setting-stack">
+            <div class="setting-row inline">
+              <div class="setting-text"><span data-i18n="settings.diagnostics">网络诊断</span></div>
+              <button id="run-diagnostics" class="button ghost small" type="button" data-i18n="settings.diagnostics.run">开始检测</button>
+            </div>
+            <ul id="diagnostics" class="diagnostics" hidden></ul>
+          </div>
+        </section>
+
+        <section class="settings-panel" data-panel="mail">
+          <div class="setting-row">
+            <div class="setting-text"><span data-i18n="settings.pageSize">每页邮件数</span></div>
+            <select id="set-pagesize" class="select-input"></select>
+          </div>
+          <div class="setting-row">
+            <div class="setting-text"><span data-i18n="settings.autoRefresh">自动刷新</span></div>
+            <select id="set-autorefresh" class="select-input"></select>
+          </div>
+          <div class="setting-row">
+            <div class="setting-text">
+              <span data-i18n="settings.includeJunk">「最近邮件」包含垃圾邮件</span>
+              <small data-i18n="settings.includeJunk.hint">关闭后只汇总收件箱、归档和自定义文件夹。</small>
+            </div>
+            <label class="switch"><input id="set-junk" type="checkbox"><span></span></label>
+          </div>
+        </section>
+
+        <section class="settings-panel" data-panel="about">
+          <dl class="about-list">
+            <div><dt data-i18n="settings.about.version">版本</dt><dd id="about-version">—</dd></div>
+            <div><dt data-i18n="settings.about.runtime">运行时</dt><dd id="about-runtime">—</dd></div>
+            <div><dt data-i18n="settings.about.dataDir">数据目录</dt><dd id="about-data" class="mono">—</dd></div>
+          </dl>
+          <p class="about-privacy" data-i18n="settings.about.privacy">简邮只在本机读取邮件，不上传任何邮件内容，也不写入已读状态。</p>
+          <div class="about-actions">
+            <button id="open-data-dir" class="button ghost small" type="button" data-i18n="settings.about.openDir">打开目录</button>
+            <button id="reset-settings" class="button ghost small" type="button" data-i18n="settings.about.reset">恢复默认设置</button>
+          </div>
+        </section>
+      </div>
+
+      <p class="form-message settings-message" id="settings-message" role="status"></p>
+      <footer class="sheet-foot">
+        <span class="spacer"></span>
+        <button id="settings-done" class="button primary" type="button" data-i18n="settings.close">完成</button>
+      </footer>
+    </div>
+  </dialog>
+</body>
+</html>
